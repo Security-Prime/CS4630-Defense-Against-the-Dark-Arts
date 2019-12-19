@@ -1,0 +1,25 @@
+Farid Rajabi Nia
+Fr2md
+HW7 
+
+1.The first variant of specter is that the information stored in the cache would be cleared after the function returns so by time accessing the content of the cache we can find out the secret password stored in memory. The technique to retrieve the information is given in the file all we need is the address of the starting byte of the secret password. Looking at the example given in the HW document we know the starting address of the username, “Dumbledore” which is 0x400e61 and its length is 10.  I have tried to print all of the character after the username by changing the string length but it was in vain. Then I tried to use the string command to extract all of the strings in the executable. This dd0rR0x! was among few candidates of possible passwords. I have also noticed that it is located next to the user name in the memory. My first impression was the password should be stored after the username but I forgot to consider that memory starts from 0xfffff and expands by incrementation. 
+Then I tried to print the values after the username address 0x400e61 and I knew the password’s length. Eventually, I found out that the password is located at 0x400e58 in memory. 
+
+2. Unsafe
+•	$ ./assignment-unsafe 	hot val: 2173736	probe val: 7374080	cold val: 10775348
+•	$ ./assignment-unsafe	hot val: 2073948	probe val: 7664736	cold val: 10742248
+•	$ ./assignment-unsafe	hot val: 2080584	probe val: 7438100	cold val: 7795709
+•	$ ./assignment-unsafe	hot val: 2155880	probe val: 7361828	cold val: 11333192
+•	$ ./assignment-unsafe	hot val: 2083572	probe val: 7329076	cold val: 7209180
+
+Safe:
+•	$ ./assignment-safe	hot val: 2232249	probe val: 14924335	cold val: 10448326
+•	$ ./assignment-safe	hot val: 2202500	probe val: 14597741	cold val: 7599086
+•	$ ./assignment-safe	hot val: 2177488	probe val: 15037420	cold val: 7958084
+•	$ ./assignment-safe	hot val: 2135352	probe val: 15522632	cold val: 9901688
+•	$ ./assignment-safe	hot val: 2222784	probe val: 14817892	cold val: 11041400
+
+I have answered 3 and 4 interchangeably. 
+3. We know that hot is the number of cycles until the value in the cache is retrieved and it is supposed to be fast. Cold value is the number of cycles to retrieve a value from memory so it is supposed to be slow. In the unsafe version, the average of the prob value is 7433564 which in comparison is closer to the hot value, meaning that there might be some instances of misprediction occurred while the calculation of the prob vale. We have got some values which are not supposed to be in cache but we are accessing them meaning it is a vulnerability. But in the safe version, the average probe value is 14980004 which is closer or even larger than the value of cold which is the result we are supposed to get if there are no elements of mispredictions involved in our calculations. 
+4. The second variant of specter is on the fact that we can use BTB poisoning to leak data. Here we have an indirect call that might result in arbitrary code execution (vulnerability for information leakage). By Applying the Retpolines, we are trying to convert the indirect call to a code sequence that avoid using BTB in the first place. Instead, we are using return stack buffer and removing the vulnerability causing misprediction. 
+As noticed in the analysis in part 3, in the unsafe version there is a chance for misprediction and the prob value might get close to the hot value in some instances.  But applying the Retpolines aka removing the chances of misprediction, brought the prob value closer to the cold value which is the expected value.

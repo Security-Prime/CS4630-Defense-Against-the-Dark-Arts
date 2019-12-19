@@ -1,0 +1,10 @@
+// Farid Rajabi Nia, fr2md
+
+1. I saw a a big chunk of nop upcodes in the initilization stage, also I knew that the payload should run after initilization, so i just overwrote the ret of that stage and set my payload in that nop chunk. In order to print that string i had to follow the print method used in other sections of the code. At the end, I just gave the address of the first char of my payload to %esp and the called the puts@plt ftn to print the given string on the screen. After I was done with the new print, i entered the leave and ret commands. Following my ret is the given string in that nop chunk, char by char.
+
+(a)  What is the file offset of the start of the function main ?
+0x49b
+(b)  What is the file offset of the start of the function TerminateApplication?
+0x426
+(c)  What is the file offset of the start of the function IntializeApplication ?
+0x43a
