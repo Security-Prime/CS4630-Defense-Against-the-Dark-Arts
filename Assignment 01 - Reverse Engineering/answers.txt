@@ -1,0 +1,94 @@
+// Name: Farid Rajabi Nia
+// UVA computing ID: fr2md 
+// Honor Pledge: 
+
+// Use a text editor of your choice to type in your responses to the following questions.  Add additional space as needed for your responses..
+
+// NOTE:  When a question asks for the address of a variable, your answer
+should be of the form of the effective/register-relative address of the variable.
+For example, 55(\%ebp), 25(\%esp), 10(\%eax)
+
+Part 1:  Analyzing Assembly Code (Analyze code.s)
+
+1. What is the address of local variable i of function main?
+
+-12(%ebp)
+
+
+2. What is the address of local variable sum of function main?
+
+-16(%ebp)
+
+
+3. What is the address of local variable x of function main?
+
+
+-20(%ebp)
+
+4. What is the address of local variable buffer of function main?
+
+-84(%ebp)
+
+
+5. What is the address of the address of the parameter vector of function baz? 
+
+12(%ebp)
+
+
+6. What is the address of parameter len of function baz?
+
+16(%ebp)
+
+
+7. What is the address of parameter value of function baz?
+
+8(%ebp)
+
+
+8. What is the address of local variable i of function baz?
+
+-4(%ebp)
+
+
+Part 2:  Analyzing Disassembled Code (Analyze your disassembly of funcs.exe)
+
+1. List the names of the functions called in main.
+
+f1, f2, f3, printf@plt
+
+
+2. How many parameters does the function f1 take?
+
+2 parameters
+
+3. How many parameters does the function f2 take?
+
+3 parameters
+
+4. How many parameters does the function f3 take?
+
+1 parameter
+
+5. Does f1 have any local variables? If so, how many and at what memory addresses? 
+
+none
+
+6. Does f2 have any local variables? If so, how many and at what memory addresses? 
+
+-0x4(%ebp)
+
+7. Does f3 have any local variables? If so, how many and at what memory addresses? 
+none
+
+8. Describe the calculation that function f1 performs.
+
+compares two paramters and ret the smaller.
+
+9. Describe the calculation that function f2 performs.
+
+1st para = (3rd para - 2nd para) + 1st para
+
+
+10. Describe the calculation that function f3 performs.
+para * para
+
